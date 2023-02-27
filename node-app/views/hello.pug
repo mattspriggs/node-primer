@@ -1,12 +1,11 @@
-//pug files use the tag name followed by the content.  To nest items you have to indent and it MUST be consistent
-//throughout the project or it will be a disaster//div is also assumed if you type just a .wrapper it will be a div
-//with a class of wrapper
-div.wrapper.ohnoooooo
-  p.hello Hello!
-  span#yo Yo!!!
-  img.dog(src='dog.jpg' alt='Dog')
-//To put things on their own line the first item has to be indented and use | and a space then verbiage
-h2
-  | Hello,
-  em  how are you?
+extends layout
+
+block content
+  p Hello
+  //above will overwrite the default on layout.pug
+block footer
+  p I love you!!!
+  //above will overwrite the default on layout.pug
+
+
 

@@ -48,6 +48,13 @@ html
                   button.flash__remove(onClick="this.parentElement.remove()") &times;
     .content
       block content
+        p This is the default
+        //above will render if not overwritten
+
+    footer
+      block footer
+        p (C) Wes Bos
+        //above will render if not overwritten
 
     block scripts
       script(src=`https://maps.googleapis.com/maps/api/js?key=${process.env.MAP_KEY}&libraries=places`)

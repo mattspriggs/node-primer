@@ -10,7 +10,11 @@ router.get("/", (req, res) => {
   // res.send(req.query.name);
   //res.send(req.query); //will echo back the parameters in the URL such as /?name=kait&age=100&cool=true in json format
   //Jade changed to Pug or .pug
-  res.render("hello");
+  //the below will pull the information from the request which is sent via the render and what is placed in the URL
+  res.render("hello", {
+    name: "wes",
+    dog: req.query.dog,
+  });
 });
 
 router.get("/reverse/:name", (req, res) => {
