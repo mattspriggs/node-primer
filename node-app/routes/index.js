@@ -12,7 +12,8 @@ router.get("/", (req, res) => {
 });
 
 router.get("/reverse/:name", (req, res) => {
-  res.send(req.params.name);
+  const reverse = [...req.params.name].reverse().join("");
+  res.send(reverse);
 });
 
 module.exports = router;
