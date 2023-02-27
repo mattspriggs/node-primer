@@ -8,7 +8,9 @@ router.get("/", (req, res) => {
   // res.send('Hey! It works!');
   // res.json(wes);
   // res.send(req.query.name);
-  res.send(req.query); //will echo back the parameters in the URL such as /?name=kait&age=100&cool=true in json format
+  //res.send(req.query); //will echo back the parameters in the URL such as /?name=kait&age=100&cool=true in json format
+  //Jade changed to Pug or .pug
+  res.render("hello");
 });
 
 router.get("/reverse/:name", (req, res) => {
