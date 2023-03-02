@@ -30,3 +30,10 @@ exports.getStores = async (req, res) => {
   console.log(stores);
   res.render("stores", { title: "Stores", stores }); //stores: stores is the same as just stores in ES6
 };
+
+exports.editStore = async (req, res) => {
+  //Find store by ID
+  const store = Store.findOne({ _id: req.params.id });
+  //confirm that they own the store
+  //render out the edit form to the user can update their store
+};
