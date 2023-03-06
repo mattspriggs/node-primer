@@ -19,7 +19,7 @@ const storeSchema = new mongoose.Schema({
     default: Date.now(),
   },
   location: {
-    typoe: {
+    type: {
       type: String,
       default: "Point",
     },
