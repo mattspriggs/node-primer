@@ -7,6 +7,9 @@
 const mongoose = require("mongoose");
 const Store = mongoose.model("Store");
 const multer = require("multer");
+const jimp = require("jimp");
+const uuid = require("uuid");
+
 const multerOptions = {
   storage: multer.memoryStorage(),
   fileFilter(req, file, next) {
@@ -26,8 +29,16 @@ exports.homePage = (req, res) => {
 exports.addStore = (req, res) => {
   res.render("editStore", { title: "Add Store" });
 };
-
+//Photo middleware
 exports.upload = multer(multerOptions).single("photo");
+
+exports.resize = async (req, res, next) => {
+  if (!req.file) {
+    next(); // skip to the next middleware
+    return;
+  }
+  console.log(req.file);
+};
 
 exports.createStore = async (req, res) => {
   const store = await new Store(req.body).save();
@@ -41,7 +52,6 @@ exports.createStore = async (req, res) => {
 exports.getStores = async (req, res) => {
   // Query the DB for a list of all stores
   const stores = await Store.find();
-  console.log(stores);
   res.render("stores", { title: "Stores", stores }); //stores: stores is the same as just stores in ES6
 };
 
