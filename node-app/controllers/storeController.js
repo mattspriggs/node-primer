@@ -13,6 +13,8 @@ const multerOptions = {
     const isPhoto = file.mimetype.startsWith("image/");
     if (isPhoto) {
       next(null, true);
+    } else {
+      next({ message: "That filetype is not allowed!" }, false);
     }
   },
 };
@@ -24,6 +26,8 @@ exports.homePage = (req, res) => {
 exports.addStore = (req, res) => {
   res.render("editStore", { title: "Add Store" });
 };
+
+exports.upload = multer(multerOptions).single("photo");
 
 exports.createStore = async (req, res) => {
   const store = await new Store(req.body).save();
