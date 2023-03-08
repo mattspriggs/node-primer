@@ -56,6 +56,8 @@ storeSchema.statics.getTagsList = function () {
   return this.aggregate([
     //this is the pipeline operator for MongoDB
     { $unwind: "$tags" },
+    { $group: { _id: "$tags", count: { $sum: 1 } } },
+    { $sort: { count: -1 } },
   ]);
 };
 
