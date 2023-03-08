@@ -62,6 +62,11 @@ exports.getStores = async (req, res) => {
   res.render("stores", { title: "Stores", stores }); //stores: stores is the same as just stores in ES6
 };
 
+exports.getStoreBySlug = async (req, res) => {
+  const store = await Store.findOne({ slug: req.params.slug });
+  res.json(store);
+};
+
 exports.editStore = async (req, res) => {
   //Find store by ID
   const store = await Store.findOne({ _id: req.params.id });
