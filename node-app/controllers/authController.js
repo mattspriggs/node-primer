@@ -46,3 +46,14 @@ exports.forgot = async (req, res) => {
   //redirect to login page
   res.redirect("/login");
 };
+
+exports.reset = async (req, res) => {
+  const user = await User.findOne({
+    resetPasswordToken: req.params.token,
+    resetPasswordExpires: { $gt: Date.now() },
+  });
+  if (!user) {
+    req.flash("error", "Password reset is invalid or has expired.");
+    return res.redirect("/login");
+  }
+};
