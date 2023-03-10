@@ -21,6 +21,8 @@ const userSchema = new Schema({
     required: "Please provide your name",
     trim: true,
   },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
 });
 
 //Virtual field
