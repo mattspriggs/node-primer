@@ -2243,6 +2243,27 @@ function typeAhead(search) {
     }).catch(function (err) {
       console.error(err);
     });
+  }); //handle keyboard inputs
+
+  searchInput.on("keyup", function (e) {
+    //if they are not pressing up, down or enter - skip
+    if (![38, 40, 13].includes(e.keyCode)) return;
+    var activeClass = "search__result--active";
+    var current = search.querySelector(".".concat(activeClass));
+    var items = search.querySelectorAll(".search__result");
+    var next;
+
+    if (e.keyCode === 40 && current) {
+      next = current.nextElementSibling || items[0];
+    } else if (e.keyCode === 40) {
+      next = items[0];
+    } else if (e.keyCode === 38 && current) {
+      next = current.previousElementSibling || items[items.length - 1];
+    } else if (e.keyCode === 38) {
+      next = items[items.length - 1];
+    } else if (e.keyCode === 13 && current.href) {
+      window.location = current.href;
+    }
   });
 }
 
