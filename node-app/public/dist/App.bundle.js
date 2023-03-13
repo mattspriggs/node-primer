@@ -2217,7 +2217,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 function searchResultsHTML(stores) {
   return stores.map(function (store) {
-    return "\n\t\t<a href=\"/stores/".concat(store.slug, "\" class=\"search__result\"><strong>").concat(store.name, "</strong>\n\t\t</a>\n\t\t");
+    return "\n\t\t<a href=\"/store/".concat(store.slug, "\" class=\"search__result\"><strong>").concat(store.name, "</strong>\n\t\t</a>\n\t\t");
   }).join("");
 }
 
@@ -2234,11 +2234,14 @@ function typeAhead(search) {
     }
 
     searchResults.style.display = "block";
+    searchResults.innerHTML = "";
     axios.get("/api/search?q=".concat(this.value)).then(function (res) {
       if (res.data.length) {
         var html = searchResultsHTML(res.data);
-        console.log(html);
+        searchResults.innerHTML = html;
       }
+    }).catch(function (err) {
+      console.error(err);
     });
   });
 }
