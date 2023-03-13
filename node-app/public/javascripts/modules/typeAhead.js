@@ -56,7 +56,12 @@ function typeAhead(search) {
       next = items[items.length - 1];
     } else if (e.keyCode === 13 && current.href) {
       window.location = current.href;
+      return;
     }
+    if (current) {
+      current.classList.remove(activeClass);
+    }
+    next.classList.add(activeClass);
   });
 }
 
