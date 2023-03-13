@@ -2215,6 +2215,12 @@ NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn
 __webpack_require__.r(__webpack_exports__);
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
+function searchResultsHTML(stores) {
+  return stores.map(function (store) {
+    return "\n\t\t<a href=\"/stores/".concat(store.slug, "\" class=\"search__result\"><strong>").concat(store.name, "</strong>\n\t\t</a>\n\t\t");
+  }).join("");
+}
+
 function typeAhead(search) {
   if (!search) return; //stop if no search entered
 
@@ -2229,7 +2235,10 @@ function typeAhead(search) {
 
     searchResults.style.display = "block";
     axios.get("/api/search?q=".concat(this.value)).then(function (res) {
-      console.log(res.data);
+      if (res.data.length) {
+        var html = searchResultsHTML(res.data);
+        console.log(html);
+      }
     });
   });
 }
