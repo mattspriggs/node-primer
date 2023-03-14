@@ -2251,6 +2251,7 @@ function loadPlaces(map) {
 
 
     var bounds = new google.maps.LatLngBounds();
+    var infoWindow = new google.maps.InfoWindow();
     var markers = places.map(function (place) {
       var _place$location$coord = _slicedToArray(place.location.coordinates, 2),
           placeLng = _place$location$coord[0],
@@ -2267,6 +2268,17 @@ function loadPlaces(map) {
       });
       marker.place = place;
       return marker;
+    }); // When someone clicks marker an info window will show
+
+    markers.forEach(function (marker) {
+      return marker.addListener("click", function () {
+        infoWindow.setContent(this.place.name);
+        infoWindow.open({
+          anchor: marker,
+          map: map,
+          shouldFocus: false
+        });
+      });
     }); //Zoom the map to the bounds edges
 
     map.setCenter(bounds.getCenter());
