@@ -58,6 +58,8 @@ router.post(
 
 router.get("/map", storeController.mapPage);
 
+router.get("/hearts", catchErrors(storeController.heartPage));
+
 /*
 API
  */
