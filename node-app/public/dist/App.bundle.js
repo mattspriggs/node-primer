@@ -2294,6 +2294,10 @@ function makeMap(mapDiv) {
   loadPlaces(map);
   var input = (0,_bling__WEBPACK_IMPORTED_MODULE_1__.$)('[name="geolocate"]');
   var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.addListener("place_changed", function () {
+    var place = autocomplete.getPlace();
+    loadPlaces(map, place.geometry.location.lat(), place.geometry.location.lng());
+  });
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (makeMap);
