@@ -8,7 +8,16 @@ const mapOptions = {
 function loadPlaces(map, lat = 43.2, lng = -79.8) {
   axios.get(`/api/stores/near?lat=${lat}&lng=${lng}`).then((res) => {
     const places = res.data;
-    console.log(places);
+    if (!places.length) {
+      alert("no places found!");
+      return;
+    }
+    const markers = places.map((place) => {
+      const [placeLng, placeLat] = place.location.coordinates;
+      console.log(placeLng, placeLat);
+      const position = { lat: placeLat, lng: placeLng };
+      const marker = new google.maps.Marker({ map, position });
+    });
   });
 }
 
