@@ -2205,6 +2205,31 @@ NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn
 
 /***/ }),
 
+/***/ "./public/javascripts/modules/map.js":
+/*!*******************************************!*\
+  !*** ./public/javascripts/modules/map.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function loadPlaces(map) {
+  var lat = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 43.2;
+  var lng = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : -79.8;
+}
+
+function makeMap(mapDiv) {
+  console.log(mapDiv);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (makeMap);
+
+/***/ }),
+
 /***/ "./public/javascripts/modules/typeAhead.js":
 /*!*************************************************!*\
   !*** ./public/javascripts/modules/typeAhead.js ***!
@@ -3788,12 +3813,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_bling__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/bling */ "./public/javascripts/modules/bling.js");
 /* harmony import */ var _modules_autocomplete__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/autocomplete */ "./public/javascripts/modules/autocomplete.js");
 /* harmony import */ var _modules_typeAhead__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/typeAhead */ "./public/javascripts/modules/typeAhead.js");
+/* harmony import */ var _modules_map__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/map */ "./public/javascripts/modules/map.js");
+
 
 
 
 
 (0,_modules_autocomplete__WEBPACK_IMPORTED_MODULE_2__["default"])((0,_modules_bling__WEBPACK_IMPORTED_MODULE_1__.$)("#address"), (0,_modules_bling__WEBPACK_IMPORTED_MODULE_1__.$)("#lat"), (0,_modules_bling__WEBPACK_IMPORTED_MODULE_1__.$)("#lng"));
 (0,_modules_typeAhead__WEBPACK_IMPORTED_MODULE_3__["default"])((0,_modules_bling__WEBPACK_IMPORTED_MODULE_1__.$)(".search"));
+(0,_modules_map__WEBPACK_IMPORTED_MODULE_4__["default"])((0,_modules_bling__WEBPACK_IMPORTED_MODULE_1__.$)("#map"));
 }();
 /******/ })()
 ;
