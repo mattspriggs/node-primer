@@ -2272,7 +2272,8 @@ function loadPlaces(map) {
 
     markers.forEach(function (marker) {
       return marker.addListener("click", function () {
-        infoWindow.setContent(this.place.name);
+        var html = "\n        <div class=\"popup\">\n          <a href=\"/store/".concat(this.place.slug, "\">\n            <img src=\"/uploads/").concat(this.place.photo || "store.png", "\" alt=\"").concat(this.place.name, "\"/>\n            <p>").concat(this.place.name, " - ").concat(this.place.location.address, "</p>\n          </a>\n        </div>\n        ");
+        infoWindow.setContent(html);
         infoWindow.open({
           anchor: marker,
           map: map,
