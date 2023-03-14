@@ -3,7 +3,7 @@ import { $ } from "./bling";
 
 const mapOptions = {
   center: { lat: 43.2, lng: -79.8 },
-  zoom: 8,
+  zoom: 10,
 };
 function loadPlaces(map, lat = 43.2, lng = -79.8) {
   axios.get(`/api/stores/near?lat=${lat}&lng=${lng}`).then((res) => {
@@ -12,12 +12,20 @@ function loadPlaces(map, lat = 43.2, lng = -79.8) {
       alert("no places found!");
       return;
     }
+    //create a bounds for the map
+    const bounds = new google.maps.LatLngBounds();
+
     const markers = places.map((place) => {
       const [placeLng, placeLat] = place.location.coordinates;
-      console.log(placeLng, placeLat);
       const position = { lat: placeLat, lng: placeLng };
+      bounds.extend(position);
       const marker = new google.maps.Marker({ map, position });
+      marker.place = place;
+      return marker;
     });
+    //Zoom the map to the bounds edges
+    map.setCenter(bounds.getCenter());
+    map.fitBounds(bounds);
   });
 }
 

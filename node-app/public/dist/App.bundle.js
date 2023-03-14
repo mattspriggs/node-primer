@@ -2235,7 +2235,7 @@ var mapOptions = {
     lat: 43.2,
     lng: -79.8
   },
-  zoom: 8
+  zoom: 10
 };
 
 function loadPlaces(map) {
@@ -2247,23 +2247,30 @@ function loadPlaces(map) {
     if (!places.length) {
       alert("no places found!");
       return;
-    }
+    } //create a bounds for the map
 
+
+    var bounds = new google.maps.LatLngBounds();
     var markers = places.map(function (place) {
       var _place$location$coord = _slicedToArray(place.location.coordinates, 2),
           placeLng = _place$location$coord[0],
           placeLat = _place$location$coord[1];
 
-      console.log(placeLng, placeLat);
       var position = {
         lat: placeLat,
         lng: placeLng
       };
+      bounds.extend(position);
       var marker = new google.maps.Marker({
         map: map,
         position: position
       });
-    });
+      marker.place = place;
+      return marker;
+    }); //Zoom the map to the bounds edges
+
+    map.setCenter(bounds.getCenter());
+    map.fitBounds(bounds);
   });
 }
 
