@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
-const slug = require("slugs");
 
 const reviewSchema = new mongoose.Schema({
   created: {
@@ -18,11 +17,11 @@ const reviewSchema = new mongoose.Schema({
     required: "You must supply a store",
   },
   text: {
-    String,
+    type: String,
     required: "Your review must have text!",
   },
   rating: {
-    type: number,
+    type: Number,
     min: 1,
     max: 5,
   },
