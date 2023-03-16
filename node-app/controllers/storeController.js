@@ -63,7 +63,10 @@ exports.getStores = async (req, res) => {
   const limit = 4;
   const skip = page * limit - limit;
   // Query the DB for a list of all stores
-  const storesPromise = Store.find().skip(skip).limit(limit);
+  const storesPromise = Store.find()
+    .skip(skip)
+    .limit(limit)
+    .sort({ created: "desc" });
   const countPromise = Store.count();
   const [stores, count] = await Promise.all([storesPromise, countPromise]);
   const pages = Math.ceil(count / limit);
