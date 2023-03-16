@@ -18,6 +18,7 @@ const reviewSchema = new mongoose.Schema({
   },
   text: {
     type: String,
+    trim: true,
     required: "Your review must have text!",
   },
   rating: {
