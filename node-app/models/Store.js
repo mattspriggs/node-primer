@@ -85,14 +85,14 @@ storeSchema.statics.getTopStores = function () {
     //Lookup stores and populate their reviews
     {
       $lookup: {
-        from: "reviews",
+        from: "reviews", //MongoDB takes the Review model and provides reviews
         localField: "_id",
         foreignField: "store",
-        as: "reviews",
+        as: "reviews", //Names the new field
       },
     },
     //Filter for only items that have 2 or more reviews
-
+    { $match: { "reviews.1": { $exists: true } } }, //reviews.1 will return true if there is a 2nd in the reviews array
     //Add the average reviews field
 
     //Sort it by our new field with highest reviews first
