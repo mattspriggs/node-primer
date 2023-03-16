@@ -94,10 +94,22 @@ storeSchema.statics.getTopStores = function () {
     //Filter for only items that have 2 or more reviews
     { $match: { "reviews.1": { $exists: true } } }, //reviews.1 will return true if there is a 2nd in the reviews array
     //Add the average reviews field
-
+    {
+      $addFields: {
+        //$project{
+        //MongoDB(3.4) should provide addFields instead of project to just add a field, project requires you to
+        // add the fields back in that you want in earlier versions
+        // photo: "$$ROOT.photo",
+        // name: "$$ROOT.name",
+        // reviews: "$$ROOT.reviews",
+        // slug: "$$ROOT.slug",
+        averageRating: { $avg: "$reviews.rating" },
+      },
+    },
     //Sort it by our new field with highest reviews first
-
+    { $sort: { averageRating: -1 } },
     //Limit to at most 10 stores
+    { $limit: 10 },
   ]);
 };
 
